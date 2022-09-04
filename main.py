@@ -1,13 +1,18 @@
-from shutil import ExecError
 import socket
-import subprocess
 import sys
-from datetime import datetime
 
-target = "scanme.nmap.org"
-targetIP = socket.gethostbyname(target)
 
-tstart = datetime.now()
+print("1 for IP, 2 for Website")
+dec = str(input("1/2?: "))
+
+if dec == "1":
+    targetIP = raw_input("IP: ")
+
+if dec == "2":
+    target = raw_input("Link: ")
+    targetIP = socket.gethostbyname(target)
+
+
 
 try:
     for p in range(1, 45000):
@@ -20,7 +25,6 @@ except Exception:
     print("Error")
     sys.exit()
 
-tend = datetime.now()
 diff = tend - tstart
 
 print("Scan completed in " + str(diff))
