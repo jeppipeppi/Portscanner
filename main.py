@@ -21,8 +21,14 @@ try:
         if res == 0:
             print("Open Port: " + str(p))
         sock.close()
-except Exception:
-    print("Error")
+except KeyboardInterrupt:
+    print("\nClosing...")
+    sys.exit()
+except socket.gaierror:
+    print("\nHostname could not be resolved.")
+    sys.exit()
+except socket.error:
+    print("\nNo response from server? Is the IP or link valid?")
     sys.exit()
 
 diff = tend - tstart
